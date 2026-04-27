@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Para Lilia - Com Amor, Julio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "dark-bg": "#0a0005",
+                        "primary-gold": "#d4af37",
+                        "primary-rose": "#e8a0bf",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float-up': 'floatUp var(--duration) ease-in infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        floatUp: {
+                            '0%': { transform: 'translateY(100vh) scale(0.5) rotate(0deg)', opacity: '0' },
+                            '10%': { opacity: '0.6' },
+                            '90%': { opacity: '0.6' },
+                            '100%': { transform: 'translateY(-20vh) scale(1.2) rotate(45deg)', opacity: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0005;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(70, 10, 40, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(100, 20, 60, 0.15), transparent 25%);
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(to right, #e8a0bf, #d4af37, #e8a0bf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Efeito de Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modais */
+        .modal { transition: opacity 0.4s ease, visibility 0.4s ease; }
+        .modal-content { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: scale(0.8) translateY(30px); }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal.active .modal-content { transform: scale(1) translateY(0); }
+
+        /* Cursor do Typewriter */
+        .cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #d4af37;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="text-gray-200 font-sans relative overflow-x-hidden pb-20">
+    
+    <div id="youtube-player" class="hidden"></div>
+
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none overflow-hidden"></div>
+
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-1/4 left-0 w-[500px] h-[500px] bg-pink-900/10 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-900/10 rounded-full blur-[100px] mix-blend-screen animate-float"></div>
+    </div>
+
+    <header class="sticky top-0 z-40 border-b border-white/5 bg-[#0a0005]/80 backdrop-blur-2xl transition-all duration-300">
+        <div class="flex justify-between items-center px-6 h-20 w-full max-w-md mx-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full overflow-hidden border border-[#d4af37]/30 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                    <img src="WhatsApp Image 2026-04-27 at 12.06.22.jpeg" alt="Julio e Lilia" class="w-full h-full object-cover"/>
+                </div>
+            </div>
+            <h1 class="font-serif italic font-bold tracking-wide text-xl gold-text-gradient">Julio & Lilia</h1>
+            <span class="material-symbols-outlined text-primary-rose animate-pulse" style="font-variation-settings: 'FILL' 1;">favorite</span>
+        </div>
+    </header>
+
+    <main class="relative z-10 w-full max-w-md mx-auto pt-8">
+        
+        <section class="px-6 mb-16 flex flex-col items-center reveal">
+            <div class="w-full max-w-[320px] aspect-square rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] mb-10 border border-white/10 relative group">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                <img src="WhatsApp Image 2026-04-27 at 12.06.23.jpeg" alt="Nosso Momento" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            
+            <div class="w-full max-w-[320px]">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-3xl font-serif font-bold text-white mb-1">Seu Astral</h2>
+                        <p class="text-primary-rose/80 text-sm tracking-widest uppercase">Jorge & Mateus</p>
+                    </div>
+                </div>
+
+                <div id="progress-container" class="w-full h-2 bg-white/10 rounded-full mb-3 cursor-pointer relative overflow-hidden group">
+                    <div id="progress-bar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-rose to-primary-gold rounded-full w-0 transition-all duration-300 shadow-[0_0_10px_#e8a0bf]"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-400 font-medium mb-8 font-serif tracking-widest">
+                    <span id="current-time">0:00</span>
+                    <span id="duration-time">0:00</span>
+                </div>
+
+                <div class="flex justify-between items-center text-white px-2">
+                    <span class="material-symbols-outlined text-2xl text-gray-500 hover:text-white transition">shuffle</span>
+                    <span class="material-symbols-outlined text-4xl text-white/70 hover:text-white cursor-pointer transition transform hover:-translate-x-1">skip_previous</span>
+                    
+                    <button id="play-btn" class="w-20 h-20 bg-gradient-to-tr from-[#d4af37] to-[#e8a0bf] text-black rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-[0_0_30px_rgba(232,160,191,0.4)] disabled:opacity-50">
+                        <span id="play-icon" class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">hourglass_empty</span>
+                    </button>
+                    
+                    <span class="material-symbols-outlined text-4xl text-white/70 hover:text-white cursor-pointer transition transform hover:translate-x-1">skip_next</span>
+                    <span class="material-symbols-outlined text-2xl text-gray-500 hover:text-white transition">repeat</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex items-center justify-center gap-4 mb-16 opacity-50 reveal">
+            <div class="h-px w-20 bg-gradient-to-r from-transparent to-primary-gold"></div>
+            <span class="material-symbols-outlined text-primary-gold text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            <div class="h-px w-20 bg-gradient-to-l from-transparent to-primary-gold"></div>
+        </div>
+
+        <section class="px-6 mb-16 reveal" style="transition-delay: 100ms;">
+            <div class="text-center mb-8">
+                <h2 class="font-serif text-3xl mb-2 gold-text-gradient">Nossa História</h2>
+                <p class="text-gray-400 font-light text-sm">Desde o dia 27 de Setembro de 2025</p>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-6 relative overflow-hidden shadow-[0_0_40px_rgba(232,160,191,0.1)]">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-primary-rose/10 rounded-full blur-2xl"></div>
+                <div class="grid grid-cols-3 gap-3 relative z-10">
+                    <div class="flex flex-col items-center bg-black/40 rounded-2xl p-4 border border-white/5 backdrop-blur-md transform transition hover:scale-105 hover:border-primary-rose/30">
+                        <span class="text-3xl font-serif font-bold text-white" id="years">0</span>
+                        <span class="text-[9px] text-primary-gold uppercase tracking-[0.2em] mt-2">Anos</span>
+                    </div>
+                    <div class="flex flex-col items-center bg-black/40 rounded-2xl p-4 border border-white/5 backdrop-blur-md transform transition hover:scale-105 hover:border-primary-rose/30">
+                        <span class="text-3xl font-serif font-bold text-white" id="months">0</span>
+                        <span class="text-[9px] text-primary-gold uppercase tracking-[0.2em] mt-2">Meses</span>
+                    </div>
+                    <div class="flex flex-col items-center bg-black/40 rounded-2xl p-4 border border-white/5 backdrop-blur-md transform transition hover:scale-105 hover:border-primary-rose/30">
+                        <span class="text-3xl font-serif font-bold text-white" id="days">0</span>
+                        <span class="text-[9px] text-primary-gold uppercase tracking-[0.2em] mt-2">Dias</span>
+                    </div>
+                    <div class="flex flex-col items-center bg-black/40 rounded-2xl p-4 border border-white/5 backdrop-blur-md transform transition hover:scale-105 hover:border-primary-rose/30">
+                        <span class="text-2xl font-serif font-bold text-primary-rose" id="hours">0</span>
+                        <span class="text-[9px] text-gray-400 uppercase tracking-[0.2em] mt-2">Horas</span>
+                    </div>
+                    <div class="flex flex-col items-center bg-black/40 rounded-2xl p-4 border border-white/5 backdrop-blur-md transform transition hover:scale-105 hover:border-primary-rose/30">
+                        <span class="text-2xl font-serif font-bold text-primary-rose" id="minutes">0</span>
+                        <span class="text-[9px] text-gray-400 uppercase tracking-[0.2em] mt-2">Min</span>
+                    </div>
+                    <div class="flex flex-col items-center bg-black/40 rounded-2xl p-4 border border-white/5 backdrop-blur-md transform transition hover:scale-105 hover:border-primary-rose/30">
+                        <span class="text-2xl font-serif font-bold text-primary-rose" id="seconds">0</span>
+                        <span class="text-[9px] text-gray-400 uppercase tracking-[0.2em] mt-2">Seg</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 mb-16 reveal" style="transition-delay: 200ms;">
+            <h3 class="font-serif text-2xl text-white mb-8 pl-2 border-l-2 border-primary-rose">Momentos Marcantes</h3>
+            <div class="relative pl-6 border-l border-white/10 space-y-8">
+                <div class="relative group">
+                    <div class="absolute -left-[31px] w-4 h-4 bg-dark-bg border-2 border-primary-rose rounded-full group-hover:bg-primary-rose transition-colors duration-300 shadow-[0_0_10px_#e8a0bf]"></div>
+                    <h4 class="text-primary-gold font-semibold text-lg">O Início de Tudo</h4>
+                    <p class="text-xs text-gray-500 mb-2 font-serif italic">27 de Setembro de 2025</p>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">Quando nossos olhares se cruzaram e percebemos que não era apenas o acaso.</p>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -left-[31px] w-4 h-4 bg-dark-bg border-2 border-primary-rose rounded-full group-hover:bg-primary-rose transition-colors duration-300"></div>
+                    <h4 class="text-primary-gold font-semibold text-lg">O Primeiro Eu Te Amo</h4>
+                    <p class="text-xs text-gray-500 mb-2 font-serif italic">12 de Outubro de 2025</p>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">O coração acelerado e a certeza de que a vida tinha ficado mais bonita.</p>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -left-[31px] w-4 h-4 bg-primary-gold border-2 border-primary-gold rounded-full shadow-[0_0_15px_#d4af37] animate-pulse"></div>
+                    <h4 class="text-white font-semibold text-lg">Hoje</h4>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed mt-1">Construindo nosso futuro, dia após dia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 mb-16 reveal" style="transition-delay: 300ms;">
+            <div class="relative overflow-hidden rounded-[2.5rem] p-8 bg-gradient-to-br from-[#2a0816] to-[#140008] border border-primary-rose/20 shadow-[0_15px_40px_rgba(232,160,191,0.15)] transform transition-all duration-500 hover:shadow-[0_20px_50px_rgba(232,160,191,0.25)]">
+                <div class="absolute -right-20 -top-20 w-48 h-48 bg-primary-gold/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10 text-center">
+                    <span class="material-symbols-outlined text-primary-rose text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">mail</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4">Carta para Você</h3>
+                    <p class="text-gray-300 font-light mb-8 italic">"Tem dias que eu olho pra você e penso: como eu tive tanta sorte?..."</p>
+                    
+                    <button id="open-modal-btn" class="w-full py-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white transition-all active:scale-95 flex items-center justify-center gap-2 font-semibold tracking-wide hover:border-primary-rose/50">
+                        Abrir Carta 
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 mb-12 reveal" style="transition-delay: 400ms;">
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="font-serif text-2xl text-white">Nossas Memórias</h3>
+                <span class="text-xs text-primary-gold tracking-widest uppercase animate-pulse">Deslize -></span>
+            </div>
+            <div class="flex gap-4 overflow-x-auto no-scrollbar pb-8 px-1">
+                <div class="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative transform transition-transform duration-300 hover:scale-[1.03] hover:rotate-2">
+                    <img src="WhatsApp Image 2026-04-27 at 12.06.22 (1).jpeg" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative transform transition-transform duration-300 hover:scale-[1.03] hover:-rotate-2">
+                    <img src="WhatsApp Image 2026-04-27 at 12.06.22 (2).jpeg" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative transform transition-transform duration-300 hover:scale-[1.03] hover:rotate-1">
+                    <img src="WhatsApp Image 2026-04-27 at 12.06.22 (3).jpeg" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 font-light text-xs pb-6 uppercase tracking-widest reveal">
+            Feito com <span class="text-primary-rose animate-pulse inline-block">♥</span> por Julio
+        </footer>
+
+    </main>
+
+    <div id="message-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl opacity-0 invisible">
+        <div class="modal-content bg-[#0a0005]/80 border border-primary-rose/30 w-[90%] max-w-md rounded-[2rem] p-8 relative shadow-[0_0_60px_rgba(232,160,191,0.2)]">
+            <button id="close-modal-btn" class="absolute top-6 right-6 text-white/50 hover:text-white hover:rotate-90 bg-white/5 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 z-10">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <span class="material-symbols-outlined text-primary-rose text-5xl mb-6 block text-center animate-pulse" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+            <h2 class="text-3xl font-serif font-bold text-white text-center mb-8 gold-text-gradient">Minha Lilia,</h2>
+            
+            <div class="text-gray-300 font-light leading-relaxed text-sm h-64 overflow-y-auto pr-2 no-scrollbar">
+                <p id="typed-text" class="cursor inline"></p>
+                <p id="typed-signature" class="font-serif font-bold text-right pt-6 text-primary-gold text-lg opacity-0 transition-opacity duration-1000 mt-4">- Seu Julio</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === 1. PARTICULAS FLUTUANTES (Efeito de Fundo) ===
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const icons = ['✨', '💖', '🌸', '✨', '🤍'];
+            
+            for(let i = 0; i < 15; i++) {
+                let p = document.createElement('div');
+                p.innerText = icons[Math.floor(Math.random() * icons.length)];
+                p.className = 'absolute text-sm opacity-0 pointer-events-none text-white/30';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animation = `floatUp ${Math.random() * 8 + 7}s ease-in infinite`;
+                p.style.animationDelay = Math.random() * 5 + 's';
+                p.style.fontSize = (Math.random() * 12 + 10) + 'px';
+                p.style.filter = 'blur(1px)';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // === 2. SCROLL REVEAL (Animação ao descer a tela) ===
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Anima só na primeira vez
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // === 3. CONTADOR DE TEMPO ===
+        const startDate = new Date(2025, 9, 12, 0, 0, 0); // 12 Outubro 2025
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('years').innerText = Math.floor(daysTotal / 365);
+            document.getElementById('months').innerText = Math.floor((daysTotal % 365) / 30);
+            document.getElementById('days').innerText = (daysTotal % 365) % 30;
+            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // === 4. LÓGICA DO MODAL & EFEITO TYPEWRITER ===
+        const modal = document.getElementById('message-modal');
+        const openBtn = document.getElementById('open-modal-btn');
+        const closeBtn = document.getElementById('close-modal-btn');
+        const typedTextEl = document.getElementById('typed-text');
+        const signatureEl = document.getElementById('typed-signature');
+        
+        const letterText = "Tem dias que eu olho pra você e penso: como eu tive tanta sorte? Não é exagero. É só que a vida ficou muito mais leve e bonita desde que nossos caminhos se cruzaram.\n\nObrigado por cada momento, cada risada, e por ser exatamente quem você é. Eu criei esse pequeno espaço virtual para eternizar o nosso espaço real.\n\nQue venham muitos outros anos, filmes e jantares ao seu lado.";
+        
+        let typeInterval;
+
+        function typeWriterEffect() {
+            typedTextEl.innerHTML = '';
+            signatureEl.style.opacity = '0';
+            let i = 0;
+            clearInterval(typeInterval);
+            
+            typeInterval = setInterval(() => {
+                if (i < letterText.length) {
+                    if (letterText.charAt(i) === '\n') {
+                        typedTextEl.innerHTML += '<br>';
+                    } else {
+                        typedTextEl.innerHTML += letterText.charAt(i);
+                    }
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                    typedTextEl.classList.remove('cursor'); // Tira o cursor no final
+                    setTimeout(() => signatureEl.style.opacity = '1', 500); // Mostra a assinatura
+                }
+            }, 50); // Velocidade da digitação (50ms por letra)
+        }
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            typedTextEl.classList.add('cursor');
+            setTimeout(typeWriterEffect, 400); // Espera o modal abrir para começar a digitar
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            clearInterval(typeInterval);
+        };
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+        // === 5. INTEGRAÇÃO YOUTUBE ===
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let player, progressInterval;
+        const playBtn = document.getElementById('play-btn');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationTimeEl = document.getElementById('duration-time');
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0', width: '0', videoId: 'SETK2maosQY',
+                // MUDANÇA: Autoplay definido como 1 e loop ativado
+                playerVars: { 'autoplay': 1, 'controls': 0, 'disablekb': 1, 'fs': 0, 'rel': 0, 'loop': 1, 'playlist': 'SETK2maosQY' },
+                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Tenta forçar o play assim que a API carregar
+            event.target.playVideo();
+            
+            playIcon.innerText = 'play_arrow'; // O onPlayerStateChange vai ajustar isso se a música tocar
+            playBtn.removeAttribute('disabled');
+            durationTimeEl.innerText = formatTime(player.getDuration());
+
+            // TRUQUE ANTI-BLOQUEIO: O primeiro toque em qualquer parte da tela dá o play se estiver pausado.
+            document.body.addEventListener('click', () => {
+                if (player && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    player.playVideo();
+                }
+            }, { once: true });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                playIcon.innerText = 'pause';
+                playIcon.style.fontVariationSettings = "'FILL' 0";
+                progressInterval = setInterval(updateProgressBar, 500);
+            } else {
+                playIcon.innerText = 'play_arrow';
+                playIcon.style.fontVariationSettings = "'FILL' 1";
+                clearInterval(progressInterval);
+            }
+        }
+
+        playBtn.addEventListener('click', () => {
+            if (player && player.getPlayerState) {
+                player.getPlayerState() == YT.PlayerState.PLAYING ? player.pauseVideo() : player.playVideo();
+            }
+        });
+
+        function updateProgressBar() {
+            if (player && player.getCurrentTime) {
+                const current = player.getCurrentTime();
+                progressBar.style.width = `${(current / player.getDuration()) * 100}%`;
+                currentTimeEl.innerText = formatTime(current);
+            }
+        }
+
+        progressContainer.addEventListener('click', (e) => {
+            if (player && player.getDuration) {
+                const clickX = e.clientX - progressContainer.getBoundingClientRect().left;
+                player.seekTo((clickX / progressContainer.getBoundingClientRect().width) * player.getDuration(), true);
+                updateProgressBar();
+            }
+        });
+
+        function formatTime(s) {
+            return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
