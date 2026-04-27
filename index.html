@@ -70,7 +70,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Efeito de Scroll Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -81,13 +80,11 @@
             transform: translateY(0);
         }
 
-        /* Modais */
         .modal { transition: opacity 0.4s ease, visibility 0.4s ease; }
         .modal-content { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: scale(0.8) translateY(30px); }
         .modal.active { opacity: 1; visibility: visible; }
         .modal.active .modal-content { transform: scale(1) translateY(0); }
 
-        /* Cursor do Typewriter */
         .cursor::after {
             content: '|';
             animation: blink 1s step-end infinite;
@@ -111,7 +108,7 @@
         <div class="flex justify-between items-center px-6 h-20 w-full max-w-md mx-auto">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full overflow-hidden border border-[#d4af37]/30 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-                    <img src="WhatsApp Image 2026-04-27 at 12.06.22.jpeg" alt="Julio e Lilia" class="w-full h-full object-cover"/>
+                    <img src="perfil.jpg" alt="Julio e Lilia" class="w-full h-full object-cover"/>
                 </div>
             </div>
             <h1 class="font-serif italic font-bold tracking-wide text-xl gold-text-gradient">Julio & Lilia</h1>
@@ -124,7 +121,7 @@
         <section class="px-6 mb-16 flex flex-col items-center reveal">
             <div class="w-full max-w-[320px] aspect-square rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] mb-10 border border-white/10 relative group">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <img src="WhatsApp Image 2026-04-27 at 12.06.23.jpeg" alt="Nosso Momento" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <img src="musica.jpg" alt="Nosso Momento" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
             </div>
             
             <div class="w-full max-w-[320px]">
@@ -246,13 +243,13 @@
             </div>
             <div class="flex gap-4 overflow-x-auto no-scrollbar pb-8 px-1">
                 <div class="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative transform transition-transform duration-300 hover:scale-[1.03] hover:rotate-2">
-                    <img src="WhatsApp Image 2026-04-27 at 12.06.22 (1).jpeg" class="w-full h-full object-cover">
+                    <img src="foto1.jpg" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative transform transition-transform duration-300 hover:scale-[1.03] hover:-rotate-2">
-                    <img src="WhatsApp Image 2026-04-27 at 12.06.22 (2).jpeg" class="w-full h-full object-cover">
+                    <img src="foto2.jpg" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-lg border border-white/10 relative transform transition-transform duration-300 hover:scale-[1.03] hover:rotate-1">
-                    <img src="WhatsApp Image 2026-04-27 at 12.06.22 (3).jpeg" class="w-full h-full object-cover">
+                    <img src="foto3.jpg" class="w-full h-full object-cover">
                 </div>
             </div>
         </section>
@@ -279,7 +276,7 @@
     </div>
 
     <script>
-        // === 1. PARTICULAS FLUTUANTES (Efeito de Fundo) ===
+        // === 1. PARTICULAS FLUTUANTES ===
         function createParticles() {
             const container = document.getElementById('particles-container');
             const icons = ['✨', '💖', '🌸', '✨', '🤍'];
@@ -298,20 +295,20 @@
         }
         createParticles();
 
-        // === 2. SCROLL REVEAL (Animação ao descer a tela) ===
+        // === 2. SCROLL REVEAL ===
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Anima só na primeira vez
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // === 3. CONTADOR DE TEMPO ===
-        const startDate = new Date(2025, 9, 12, 0, 0, 0); // 12 Outubro 2025
+        const startDate = new Date(2025, 9, 12, 0, 0, 0); 
         function updateCounter() {
             const now = new Date();
             const diff = now - startDate;
@@ -354,16 +351,16 @@
                     i++;
                 } else {
                     clearInterval(typeInterval);
-                    typedTextEl.classList.remove('cursor'); // Tira o cursor no final
-                    setTimeout(() => signatureEl.style.opacity = '1', 500); // Mostra a assinatura
+                    typedTextEl.classList.remove('cursor');
+                    setTimeout(() => signatureEl.style.opacity = '1', 500); 
                 }
-            }, 50); // Velocidade da digitação (50ms por letra)
+            }, 50); 
         }
 
         openBtn.addEventListener('click', () => {
             modal.classList.add('active');
             typedTextEl.classList.add('cursor');
-            setTimeout(typeWriterEffect, 400); // Espera o modal abrir para começar a digitar
+            setTimeout(typeWriterEffect, 400); 
         });
 
         const closeModal = () => {
@@ -390,21 +387,18 @@
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 height: '0', width: '0', videoId: 'SETK2maosQY',
-                // MUDANÇA: Autoplay definido como 1 e loop ativado
                 playerVars: { 'autoplay': 1, 'controls': 0, 'disablekb': 1, 'fs': 0, 'rel': 0, 'loop': 1, 'playlist': 'SETK2maosQY' },
                 events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
             });
         }
 
         function onPlayerReady(event) {
-            // Tenta forçar o play assim que a API carregar
             event.target.playVideo();
             
-            playIcon.innerText = 'play_arrow'; // O onPlayerStateChange vai ajustar isso se a música tocar
+            playIcon.innerText = 'play_arrow'; 
             playBtn.removeAttribute('disabled');
             durationTimeEl.innerText = formatTime(player.getDuration());
 
-            // TRUQUE ANTI-BLOQUEIO: O primeiro toque em qualquer parte da tela dá o play se estiver pausado.
             document.body.addEventListener('click', () => {
                 if (player && player.getPlayerState() !== YT.PlayerState.PLAYING) {
                     player.playVideo();
